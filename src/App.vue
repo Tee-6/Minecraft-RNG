@@ -53,8 +53,8 @@ export default {
     },
     roll() {
       if (this.category === 'number') {
-        const numberFrom = document.getElementById("numberFrom").value || 0;
-        const numberTo = document.getElementById("numberTo").value || 64;
+        const numberFrom = Math.ceil(document.getElementById("numberFrom").value) || 0;
+        const numberTo = Math.floor(document.getElementById("numberTo").value) || 64;
 
         if (numberTo < numberFrom) {
           this.output = "range error"
