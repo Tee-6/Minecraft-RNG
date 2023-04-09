@@ -82,6 +82,7 @@ export default {
   @font-face {
       font-family: "MinecraftRegular";
       src: url("Minecraft.ttf");
+      
   }
 
   .container {
