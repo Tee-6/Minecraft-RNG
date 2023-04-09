@@ -18,11 +18,11 @@
     <div v-if="category === 'number'" class="numberInputs">
       <div>
         <label>From: </label>
-        <input id="numberFrom" type="number" placeholder="0" />
+        <input id="numberFrom" type="number" min="0" placeholder="0" />
       </div>
       <div>
         <label>To: </label>
-        <input id="numberTo" type="number" placeholder="64" />
+        <input id="numberTo" type="number" min="0" placeholder="64" />
       </div>
     </div>
     <div v-else style="height: 52px"></div>
@@ -56,7 +56,7 @@ export default {
         const numberFrom = Math.ceil(document.getElementById("numberFrom").value) || 0;
         const numberTo = Math.floor(document.getElementById("numberTo").value) || 64;
 
-        if (numberTo < numberFrom) {
+        if (numberTo < numberFrom || numberTo < 0 || numberFrom < 0) {
           this.output = "range error"
         }
         else {
