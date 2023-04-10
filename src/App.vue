@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="output">
-      <span>{{output}}</span>
+      <span style="text-transform: capitalize;">{{output}}</span>
       <img v-if="outputImg" :src="outputImg" width="45">
     </div>
 
@@ -63,8 +63,6 @@ export default {
         const numberFrom = Math.ceil(document.getElementById("numberFrom").value);
         const numberTo = Math.floor(document.getElementById("numberTo").value);
 
-        console.log(numberFrom, numberTo);
-
         if (numberTo < numberFrom || numberTo < 0 || numberFrom < 0) {
           this.output = "range error"
         }
@@ -73,104 +71,26 @@ export default {
         }
       }
       else if (this.category === 'color') {
-        const colorOptions = ["Black", "Red", "Green", "Brown", "Blue", "Purple", "Cyan", "Light Gray", "Gray", "Pink", "Lime", "Yellow", "Light Blue", "Magenta", "Orange", "White"]
+        const colorOptions = ["black", "red", "green", "brown", "blue", "purple", "cyan", "light_gray", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"]
         const idx = Math.floor(Math.random() * colorOptions.length);
-        this.output = colorOptions[idx];
 
-        let color = ""
-        switch (this.output) {
-          case 'Black':
-            color = "black";
-            break;
-          case 'Red':
-            color = "red";
-            break;
-          case 'Green':
-            color = "green";
-            break;
-          case 'Brown':
-            color = "brown";
-            break;
-          case 'Blue':
-            color = "blue";
-            break;
-          case 'Purple':
-            color = "purple";
-            break;
-          case 'Cyan':
-            color = "cyan";
-            break;
-          case 'Light Gray':
-            color = "light_gray";
-            break;
-          case 'Gray':
-            color = "gray";
-            break;
-          case 'Pink':
-            color = "pink";
-            break;
-          case 'Lime':
-            color = "lime";
-            break;
-          case 'Yellow':
-            color = "yellow";
-            break;
-          case 'Light Blue':
-            color = "light_blue";
-            break;
-          case 'Magenta':
-            color = "magenta";
-            break;
-          case 'Orange':
-            color = "orange";
-            break;
-          case 'White':
-            color = "white";
-            break;
-        }
-        this.outputImg = `colors/${color}_dye.png`
+        this.output = colorOptions[idx].replace("_", " ");
+        this.outputImg = `colors/${colorOptions[idx]}_dye.png`;
       }
       else if (this.category === 'woodtype') {
         this.outputImg = null;
 
-        const woodOptions = ["Oak Wood", "Spruce Wood", "Birch Wood", "Jungle Wood", "Acacia Wood", "Dark Oak Wood", "Mangrove Wood", "Cherry Wood", "Crimson Hyphae", "Warped Hyphae"]
+        const woodOptions = ["oak", "spruce", "birch", "jungle", "acacia", "dark_oak", "mangrove", "cherry", "crimson", "warped"]
         const idx = Math.floor(Math.random() * woodOptions.length);
-        this.output = woodOptions[idx];
 
-        let wood = ""
-        switch (this.output) {
-          case 'Oak Wood':
-            wood = "oak";
-            break;
-          case 'Spruce Wood':
-            wood = "spruce";
-            break;
-          case 'Birch Wood':
-            wood = "birch";
-            break;
-          case 'Jungle Wood':
-            wood = "jungle";
-            break;
-          case 'Acacia Wood':
-            wood = "acacia";
-            break;
-          case 'Dark Oak Wood':
-            wood = "dark_oak";
-            break;
-          case 'Mangrove Wood':
-            wood = "mangrove";
-            break;
-          case 'Cherry Wood':
-            wood = "cherry";
-            break;
-          case 'Crimson Hyphae':
-            wood = "crimson";
-            break;
-          case 'Warped Hyphae':
-            wood = "warped";
-            break;
+        this.outputImg = `woodtypes/${woodOptions[idx]}_planks.png`;
+        
+        if (woodOptions[idx].includes("crimson") || woodOptions[idx].includes("warped")) {
+          this.output = woodOptions[idx].replace("_", " ") + " Hyphae";
         }
-        this.outputImg = `woodtypes/${wood}_planks.png`
+        else {
+          this.output = woodOptions[idx].replace("_", " ") + " Wood";
+        }
       }
     }
   },
