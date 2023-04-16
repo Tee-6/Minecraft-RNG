@@ -1,3 +1,4 @@
 # Minecraft-RNG
 
-To generate some random Minecraft attributes
+Website that generates some random Minecraft attributes.
+Made as a joke.
